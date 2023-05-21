@@ -16,20 +16,8 @@ dimensions=[2,10,20]
 for bm in range(1,9):
   # Run the genetic algorithm for each problem dimension
   for dim in dimensions:
-      out =  gaCrossOver.ga_logic(dim,bm)
-      NoneType = type(None)
-      if isinstance(out , NoneType): 
-        print("No Data to plot")
-      else:
-        # Plot the Results
-        plt.plot(out.bestcost)
-        #plt.semilogy(out.bestcost)
-        plt.xlim(0, pop_size)
-        plt.xlabel('Iterations')
-        plt.ylabel('Best Cost/Fitness')
-        plt.title('GA: '+out.benchMarkFuncName + ' , Dimension : '+str(out.dim))
-        plt.grid(True)
-        plt.show()
+      gaCrossOver.ga_logic(dim,bm)
+    
      
 #DE
 # Run the DE for each benchmark fucntions
