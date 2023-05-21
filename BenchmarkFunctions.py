@@ -31,17 +31,9 @@ def evaluate_functions(id,x):
                 return None,"Ackley's function" 
             else:
                 dim = len(x)
-                try:
-                    #term1 = -0.2 * np.sqrt((1/dim) * np.sum(x**2))
-                    #term2 = (1/dim) * np.sum(np.cos(2 * np.pi * x))
-                    term1 = -0.2 * np.sqrt((1/dim) * np.sum(np.power(x,2)))
-                    term2 = (1/dim) * np.sum(np.cos(np.multiply(2 * np.pi , x)))
-                    return -20 * np.exp(term1) - np.exp(term2) + 20 + np.exp(1),"Ackley's function"     
-                    
-                    #return np.sum(100 * (x[i+1] - x[i]**2)**2 + (1 - x[i])**2 for i in range(dim-1)) ,"Ackley's function"           
-                except Exception :
-                    print("Exception in Ackley's function :"+ str(Exception))
-
+                term1 = -0.2 * np.sqrt((1/dim) * np.sum(np.power(x,2)))
+                term2 = (1/dim) * np.sum(np.cos(np.multiply(2 * np.pi , x)))
+                return -20 * np.exp(term1) - np.exp(term2) + 20 + np.exp(1),"Ackley's function"     
         case 6:
             if x is None:
                 return None,"Weierstrass function"
