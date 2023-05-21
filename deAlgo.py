@@ -62,27 +62,6 @@ def de_logic(problem_dimension,benfunc):
     plt.ylabel('Fitness')
     plt.title('DE Optimization Progress : '+func_name + ' , Dimension : '+str(problem_dimension))
     plt.grid(True)
-    #plt.show()
+    plt.show()
     print(f"Best Solution: {best_solution}, Best Fitness: {best_fitness}")
     print(func_name)
-
-
-#for dimIndex in range(len(dims)):
-#    result = differential_evolution(fitness_function, bounds=variable_range * dims[dimIndex], strategy='rand1bin',
-#                                popsize=pop_size, mutation=(0.8, 1.0), recombination=0.9, maxiter=31, disp=False)
-#    
-#
-#    # Print the best solution and fitness
-#    best_solution = result.x
-#    best_fitness = -result.fun
-#    fitness_values = -result.fun
-#    print(f"For Dimension : {dims[dimIndex]},Best Solution: {best_solution}, Best Fitness: {best_fitness}")
-#    fitness_values_arr.append(-result.fun)
-
-# Run the Differential Evolution algorithm
-#for dimIndex in range(len(dims)):
-#    problem_dimension=dims[dimIndex]
-#    differential_evolution()
-
-
-
