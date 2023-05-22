@@ -1,9 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-
-import BenchmarkFunctions
-
+import benchmarkFunctions
 
 dims = [2,10,20]
 number_of_runs = 31
@@ -47,21 +45,26 @@ def de_logic(problem_dimension,benfunc):
             target = population[i]
             mutant = mutation(population, i)
             trial = deCrossover(population, i, mutant, problem_dimension)
-            target_fitness , func_name = BenchmarkFunctions.evaluate_functions(benfunc,target)
-            trial_fitness, func_name = BenchmarkFunctions.evaluate_functions(benfunc,trial)
+            target_fitness , func_name = benchmarkFunctions.evaluate_functions(benfunc,target)
+            trial_fitness, func_name = benchmarkFunctions.evaluate_functions(benfunc,trial)
             if trial_fitness > target_fitness:
                 population[i] = trial
                 if trial_fitness > best_fitness:
                     best_solution = trial
                     best_fitness = trial_fitness
-        fitness_values.append(best_fitness)
-    # Plot optimization progress
+        fitness_values.append(best_fitness) 
+
+    print("mean is : "+str( np.mean(best_solution)))
+    print("std is : "+str( np.std(best_solution)))
+    print("var is : "+str( np.var(best_solution)))   
     generations = range(1, number_of_runs + 1)
     plt.plot(generations, fitness_values, 'b')
     plt.xlabel('Generation')
     plt.ylabel('Fitness')
     plt.title('DE Optimization Progress : '+func_name + ' , Dimension : '+str(problem_dimension))
     plt.grid(True)
+    plt.savefig("plots//DE_"+func_name+"_"+str(problem_dimension)+"_plot.png")
     plt.show()
+    plt.clf()
     print(f"Best Solution: {best_solution}, Best Fitness: {best_fitness}")
     print(func_name)
