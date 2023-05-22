@@ -2,7 +2,7 @@ import random
 from ypstruct import structure
 import matplotlib.pyplot as plt
 import numpy as np
-import BenchmarkFunctions
+import benchmarkFunctions
 
 #params for GA
 pop_size = 100 #np
@@ -53,9 +53,9 @@ def ga_logic(problem_dimension,bmFunc):
         nfc = 0  # Number of fitness evaluations
         
         while nfc < max_nfc:
-            evaluated_population = [(individual, BenchmarkFunctions.evaluate_functions(bmFunc,individual)) for individual in population]
+            evaluated_population = [(individual, benchmarkFunctions.evaluate_functions(bmFunc,individual)) for individual in population]
             # To get the current function name for plot purpose
-            _,current_func_name=BenchmarkFunctions.evaluate_functions(bmFunc,None)
+            _,current_func_name=benchmarkFunctions.evaluate_functions(bmFunc,None)
             evaluated_population.sort(key=lambda x:x[1], reverse=True)
             population = [individual for individual, _ in evaluated_population]
             # Crossover and mutation
@@ -76,6 +76,9 @@ def ga_logic(problem_dimension,bmFunc):
         best_fitness = evaluated_population[0][1]
         fitness_values.append(evaluated_population[0][1][0])
     print(f"Run {run + 1}: Best Solution: {best_solution}, Best Fitness: {best_fitness}")
+    print("mean is : "+str( np.mean(best_solution)))
+    print("std is : "+str( np.std(best_solution)))
+    print("var is : "+str( np.var(best_solution)))
     generations = range(1, number_of_runs + 1)
     # Plot the best fitness value over generations
     plt.plot(generations, fitness_values)
@@ -83,4 +86,8 @@ def ga_logic(problem_dimension,bmFunc):
     plt.ylabel('Best Fitness')
     plt.title('GA : '+current_func_name + ' , Dimension : '+str(problem_dimension))
     plt.grid(True)
-    plt.show()
+    plt.savefig("plots//GA_"+current_func_name+"_"+str(problem_dimension)+"_plot.png")
+    #plt.show()
+    plt.clf()
+
+
