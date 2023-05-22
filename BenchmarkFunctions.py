@@ -36,6 +36,20 @@ def evaluate_functions(id,x):
                 return -20 * np.exp(term1) - np.exp(term2) + 20 + np.exp(1),"Ackley's function"     
         case 6:
             if x is None:
+                return None,"Griewank's function"
+            else:
+                dim = len(x)
+                term1 = np.sum(np.power(x,2)) / 4000
+                term2 = np.prod(np.cos(x / np.sqrt(np.arange(1, dim + 1))))
+                return 1 + term1 - term2,"Griewank's function"
+        case 7:
+            if x is None:
+                return None,"Rastrigin's function"
+            else:
+                dim = len(x)
+                return 10 * dim + np.sum( np.power(x,2) - 10 * np.cos(2 * np.multiply(np.pi , x))),"Rastrigin's function"
+        case 8:
+            if x is None:
                 return None,"Weierstrass function"
             else:
                 dim = len(x)
@@ -47,22 +61,8 @@ def evaluate_functions(id,x):
                     term1 = 0
                     term2 = 0
                     for k in range(k_max + 1):
-                        term1 += a**k * np.cos(2 * np.pi * b**k * (x[i] + 0.5))
-                        term2 += a**k * np.cos(2 * np.pi * b**k * 0.5)
+                        term1 += np.power(a,k) * np.cos(2 * np.pi * np.power(b,k) * (x[i] + 0.5))
+                        term2 += np.power(a,k) * np.cos(2 * np.pi * np.power(b,k) * 0.5)
                     result += term1 - dim * term2
                 return result,"Weierstrass function"
-        case 7:
-            if x is None:
-                return None,"Griewank's function"
-            else:
-                dim = len(x)
-                term1 = np.sum(np.power(x,2)) / 4000
-                term2 = np.prod(np.cos(x / np.sqrt(np.arange(1, dim + 1))))
-                return 1 + term1 - term2,"Griewank's function"
-        case 8:
-            if x is None:
-                return None,"Rastrigin's function"
-            else:
-                dim = len(x)
-                return 10 * dim + np.sum(x**2 - 10 * np.cos(2 * np.pi * x)),"Rastrigin's function"
 
