@@ -54,3 +54,6 @@ Non-separable
 8) Rastrigin’s Function 800 Multi-modal
 Separable
 Local optima’s number is huge
+
+
+Note: This is my own study and might vary from the actual ones
